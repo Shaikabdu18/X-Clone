@@ -5,12 +5,8 @@ const postSchema = mongoose.Schema({
         type:String,
         required:[true,"Content is Required"],
         maxlength:400,
-    },   media: [
-        {
-            url: { type: String, required: true },
-            type: { type: String, required: true }, // e.g., 'image/jpeg'
-        },
-    ], media:[{ url: String, type: String }],
+    },   
+     media:[{ url: String, type: String }],
     user:{type:mongoose.Schema.Types.ObjectId,ref:"User",required:true},
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     visibility: { type: String, enum: ['Public', 'Followers', 'Private'], default: 'Public' },

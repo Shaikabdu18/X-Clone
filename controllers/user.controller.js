@@ -33,3 +33,22 @@ export const login=async(req,res,next)=>{
         next()
     }
 }
+
+export const profile=async(req,res,next)=>{
+    try {
+        const { bio, location, website } = req.body;
+        const user = await User.findById(req.user.id);
+
+        if (req.file) {
+            user.profile.profilePicture = req.file.path; // Store Cloudinary URL
+        }
+        user.profile.bio = bio || user.profile.bio;
+        user.profile.location = location || user.profile.location;
+        user.profile.website = website || user.profile.website;
+
+        await user.save();
+        res.json({ message: 'Profile updated successfully'});
+    } catch (error) {
+        next()
+    }
+}

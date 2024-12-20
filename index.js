@@ -6,6 +6,7 @@ import helmet from "helmet"
 import errorHandler from "./middleware/errorHandler.js"
 import authRoutes from "./routes/user.routes.js"
 import postRoutes from "./routes/post.routes.js"
+import follow from "./routes/follow.routes.js"
 
 
 
@@ -21,6 +22,7 @@ app.use(helmet())
 // Routes
 app.use("/api/auth",authRoutes)
 app.use("/api",postRoutes)
+app.use("/api",follow)
 
 app.use(errorHandler)
 
